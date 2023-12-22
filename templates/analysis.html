@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis | Instagram</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add your custom stylesheets or CDN links here -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        .result-container {
+            max-width: 600px;
+            margin: auto;
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Analysis Results</h2>
+        <div class="result-container">
+            <p>Username: {{ user_info.username }}</p>
+            <p>Full Name: {{ user_info.full_name }}</p>
+            <p>Number of Posts: {{ user_info.media_count }}</p>
+            <p>Number of Followers: {{ user_info.follower_count }}</p>
+            <p>Number of Following: {{ user_info.following_count }}</p>
+
+            <hr>
+
+            <h4>Mutual Followers:</h4>
+            <ul>
+                {% for mutual_follower in mutual_followers %}
+                    <li>{{ mutual_follower.username }}</li>
+                {% endfor %}
+            </ul>
+
+            <h4>Unfollowed Back:</h4>
+            <ul>
+                {% for unfollowed in unfollowed_back %}
+                    <li>{{ unfollowed.username }}</li>
+                {% endfor %}
+            </ul>
+
+            <h4>Stalked Back:</h4>
+            <ul>
+                {% for stalked in stalked_back %}
+                    <li>{{ stalked.username }}</li>
+                {% endfor %}
+            </ul>
+
+            <hr>
+
+            <h4>Media Data:</h4>
+            <ul>
+                {% for media in media_data %}
+                    <li>{{ media.id }}: {{ media.caption.text }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a class="btn btn-primary back-btn mt-3" href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>
